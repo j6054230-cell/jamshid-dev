@@ -1,7 +1,14 @@
-FROM python:3.9-slim
+FROM node:20-alpine
+
 WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --only=production
+
 COPY . .
-# Standart qiymatlar
-ENV APP_MODE=production
-ENV DB_HOST=db.example.com
-CMD ["python", "main.py"]
+
+EXPOSE 3000
+
+USER node
+
+CMD ["node", "server.js"]

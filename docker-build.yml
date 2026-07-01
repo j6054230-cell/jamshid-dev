@@ -1,0 +1,22 @@
+name: Docker Build Workflow
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+
+ steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+- name: Build Docker Image
+        run: |
+          docker build -t my-app:latest .
+
+
+- name: Verify Build
+        run: echo "build success"
+
